@@ -1,0 +1,22 @@
+---
+- name: Install dependencies
+  apt:
+    name: ["apt-transport-https", "ca-certificates", "curl", "software-properties-common"]
+    state: present
+    update_cache: yes
+
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+  notify: restart docker
+
+- name: Create Jenkins user (as per requirement)
+  user:
+    name: jenkins
+    groups: docker
+    append: yes
+- name: Check Jenkins status
+  service:
+    name: jenkins
+    state: started

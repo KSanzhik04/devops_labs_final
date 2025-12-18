@@ -1,0 +1,4 @@
+k8s/kubectl
+k8s/minikube-linux-amd64
+.idea/
+app/.git

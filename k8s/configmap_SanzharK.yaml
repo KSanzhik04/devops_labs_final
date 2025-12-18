@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config-sanzhark
+data:
+  APP_KEY: "base64:ELB+zH987BJL1+AGSGhpuUxo5UT1xqCNlJeuh6Fd2fk="
+  DB_CONNECTION: "pgsql"
+  DB_HOST: "postgres-sanzhark"
+  DB_PORT: "5432"
+  DB_DATABASE: "laravel_db"
+  DB_USERNAME: "laravel_user"

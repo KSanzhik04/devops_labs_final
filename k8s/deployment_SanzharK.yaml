@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-app-sanzhark
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: laravel-sanzhark
+  template:
+    metadata:
+      labels:
+        app: laravel-sanzhark
+    spec:
+      containers:
+      - name: laravel-container
+        image: ksanzhik04/laravel-app-sanzhark:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+   #     livenessProbe:
+   #       httpGet:
+   #         path: /
+   #         port: 8000
+   #       initialDelaySeconds: 60
+   #       periodSeconds: 10
+   #     readinessProbe:
+   #         httpGet:
+   #           path: /
+   #           port: 8000
+   #         initialDelaySeconds: 60
+  #        periodSeconds: 10
+        env:
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-secret-sanzhark
+                key: password
+        envFrom:
+          - configMapRef:
+              name: app-config-sanzhark

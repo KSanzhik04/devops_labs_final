@@ -1,0 +1,15 @@
+---
+- name: Deploy Kubernetes Manifests
+  hosts: local
+  tasks:
+    - name: Apply K8s ConfigMap
+      command: kubectl apply -f /opt/devops-project/k8s/configmap_SanzharK.yaml
+
+    - name: Apply K8s Secret
+      command: kubectl apply -f /opt/devops-project/k8s/secret_SanzharK.yaml
+
+    - name: Apply K8s Deployment
+      command: kubectl apply -f /opt/devops-project/k8s/deployment_SanzharK.yaml
+
+    - name: Apply K8s Service
+      command: kubectl apply -f /opt/devops-project/k8s/service_SanzharK.yaml
